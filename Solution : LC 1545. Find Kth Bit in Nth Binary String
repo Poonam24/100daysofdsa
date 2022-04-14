@@ -1,0 +1,37 @@
+
+class Solution {
+    func findKthBit(_ n: Int, _ k: Int) -> Character {
+        
+        let binaryString = createBinaryString(n);
+        let index = binaryString.index(binaryString.startIndex, offsetBy:k-1);        
+        return binaryString[index];
+        
+    }
+    
+    func createBinaryString(_ n : Int) -> String {
+        
+        if(n == 1)  {
+            return "0"
+        } else {
+            return createBinaryString(n-1) + "1" + invert(createBinaryString(n-1)).reversed()
+        }
+        
+    }
+    
+    func invert(_ str : String) -> String {
+        var invertedString = ""
+       let bits =  Array(str)
+        for item in bits {
+            if item == "0" {
+                invertedString = invertedString + "1"
+            }
+            else {
+               invertedString = invertedString + "0" 
+            }
+        }
+        return invertedString;
+        
+    }
+    
+   
+}
